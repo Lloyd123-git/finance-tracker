@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './index.css';
 
 function App() {
   //This array will store all transaction objects
@@ -19,28 +20,15 @@ function App() {
   ]);
 
   return (
-    <div style= {{
-      maxWidth: '600px',
-      margin: '40px auto',
-      padding: '0 20px',
-      fontFamily: 'sans-serif'
-    }}>
+    <div className = "container">
 
       {/* Placeholder components where modular files will go next */}
-      <div className = "balance-summary-box" 
-        style = {{
-        background: '#f4f4f4',
-        padding: '15px',
-        borderRadius: '8px'
-      }}>
-      <h3>Your Balance Summary (Placeholder)</h3>
-      <p>Total Items Tracked: {transactions.length}</p>
+      <div className = "balance-summary-box">
+        <h3>Your Balance Summary</h3>
+        <p>Total Items Tracked: {transactions.length}</p>
       </div>
 
-      <div className="transaction-form-box" 
-      style={{
-        margin: '20px 0'
-      }}>
+      <div className="transaction-form-box">
         <h3>Add New Transaction (Placeholder) </h3>
       </div>
 
@@ -48,8 +36,12 @@ function App() {
         <h3>History (Placeholder)</h3>
         <ul>
           {transactions.map(item => (
-            <li key = {item.id}>
-              {item.description} : {item.type === 'expense' ? '-' : '+'}${item.amount}
+            <li 
+              key = {item.id} 
+              className = {item.type === 'expense' ? 'expense-item' : 'income-item'}
+            >
+              <span>{item.description}</span>
+              <span>{item.type === 'expense' ? '-' : '+'}${item.amount}</span>
             </li>
           ))}
         </ul>
